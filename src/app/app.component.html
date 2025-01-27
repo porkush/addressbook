@@ -1,0 +1,50 @@
+<div class="navbar">
+  <ul>
+    <li><a href="#" (click)="showDetails('home')">Home</a></li>
+    <li><a href="#" (click)="showDetails('contacts')">Contacts</a></li>
+    <li><a href="#" (click)="showDetails('add-contact')">Add Contact</a></li>
+    <li><a href="#" (click)="showDetails('about')">About</a></li>
+  </ul>
+</div>
+
+<div style="text-align:center; margin-top: 20px;">
+  <h1>Address Book</h1>
+</div>
+
+<div *ngIf="selectedPage === 'home'">
+  <p>Welcome to the Address Book!</p>
+
+  
+  
+</div>
+
+<div *ngIf="selectedPage === 'contacts'">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone </th>
+      <td mat-cell *matCellDef="let contact"> {{ contact.phone }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div *ngIf="selectedPage === 'add-contact'">
+  <p>Here you can add a new contact.</p>
+  
+</div>
+
+<div *ngIf="selectedPage === 'about'">
+  <p>This is an address book application built with Angular.</p>
+</div>
